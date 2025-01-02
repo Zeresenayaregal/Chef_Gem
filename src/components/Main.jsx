@@ -1,41 +1,41 @@
 import React from "react"
 import ClaudeRecipe from "./ClaudeRecipe"
 import IngredientsList from "./IngredientsList"
-import { getRecipeFromLlama } from "../responded.js"
+import { getGemResponse } from "../responded.js"
 
 
 
 export default function Main(){
-    const [ingrediantList, setIngrediantList] = React.useState(["all the main spices", "pasta", "ground beef", "tomato paste"])
-    const [recipeShown, setRecipeShown] = React.useState(false)
+    const [ingredientList, setIngredientList] = React.useState([])
+    const [recipeOut, setRecipeOut] = React.useState("");
     
     async function getRecipe() {
-        const recipeMarkdown = await getRecipeFromLlama(ingredients)
-        console.log(recipeMarkdown)
+        const gemResponse = await getGemResponse(ingredientList);
+        setRecipeOut(gemResponse);
     }
 
-    function addIngrediant(formData){
-        const newIngrediant = formData.get("ingrediant")
-        setIngrediantList(prevIngList => [...prevIngList, newIngrediant])
+    function addIngredient(formData){
+        const newIngredient = formData.get("ingredient")
+        setIngredientList(prevIngList => [...prevIngList, newIngredient])
 
     }
 
     return (
         <main>
-            <form action={addIngrediant} className="add-ingrediant">
-                <input aria-label="Add ingrediant" 
+            <form action={addIngredient} className="add-ingredient">
+                <input aria-label="Add ingredient" 
                        placeholder="e.g. Onion" 
                        type="text" 
-                       name="ingrediant" 
-                       id="ingrediant" />
+                       name="ingredient" 
+                       id="ingredient" />
             <button> + Add ingerediant</button>
             </form>
         
-            {ingrediantList.length > 0 ? <IngredientsList 
-                                                    length={ingrediantList.length}
-                                                    ingrediantList={ingrediantList}
+            {ingredientList.length > 0 ? <IngredientsList 
+                                                    length={ingredientList.length}
+                                                    ingredientList={ingredientList}
                                                     getRecipe={getRecipe}/>: null}
-            {recipeShown && <ClaudeRecipe />}
+            {recipeOut && <ClaudeRecipe outPut={recipeOut}/>}
         </main>
     )
 }
