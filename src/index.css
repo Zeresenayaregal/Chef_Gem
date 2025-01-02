@@ -28,13 +28,13 @@ header{
 main{
   margin-top: 20px;
 }
-.add-ingrediant{
+.add-ingredient{
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
-.add-ingrediant > input{
+.add-ingredient > input{
   border-radius: 8px;
   border: 1px solid #D1D5DB;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
@@ -44,7 +44,7 @@ main{
   max-width: 600px;
   min-width: 15px;
 }
-.add-ingrediant > button{
+.add-ingredient > button{
   border-radius: 6px;
   border-style: none;
   background-color: #000;
