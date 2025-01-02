@@ -30,5 +30,7 @@ A simple React application that leverages Google's Gemini AI to generate recipes
 ## ⚙️ Setup Instructions
 1. **Clone the repository**:
    ```bash
+
    git clone https://github.com/Zeresenayaregal/Chef_Gem.git
    cd Chef_Gem
+
