@@ -1,20 +1,13 @@
-import { HfInference } from "@huggingface/inference"
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const hf = new HfInference(process.env.HF_ACCESS_TOKEN)
 
-export async function getRecipeFromLlama(ingredientsArr) {
-    const ingredientsString = ingredientsArr.join(", ")
-    try {
-        const response = await hf.chatCompletion({
-            model: "meta-llama/Llama-3.3-70B-Instruct",
-            messages: [
-                { role: "system", content: SYSTEM_PROMPT },
-                { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
-            ],
-            max_tokens: 1024,
-        })
-        return response.choices[0].message.content
-    } catch (err) {
-        console.error(err.message)
-    }
+export async function getGemResponse(list) {
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    const prompt = `You are a cooking assistant. Given this list of ingredients: ${list}, suggest a recipe. Use markdown format.`;
+
+    const result = await model.generateContent(prompt);
+    return (result.response.text());
 }
+
