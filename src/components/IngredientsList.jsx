@@ -1,5 +1,5 @@
 export default function IngredientsList(props){
-    const ingListElement = props.ingrediantList.map(ing => <li>{ing}</li>)
+    const ingListElement = props.ingredientList.map(ing => <li key={ing}>{ing}</li>)
     return(
         <section>
                 <h2>Ingredients on hand:</h2>
