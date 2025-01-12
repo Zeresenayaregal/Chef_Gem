@@ -1,4 +1,4 @@
-# Gemini AI Recipe Generator 🌟
+# AI Recipe Generator 🌟
 
 A simple React application that leverages Google's Gemini AI to generate recipes based on a list of user-provided ingredients. This project demonstrates the integration of AI with modern front-end development to create a dynamic and interactive user experience.
 
